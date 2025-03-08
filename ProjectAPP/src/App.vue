@@ -3,12 +3,17 @@
 <template>
 
 <main>
-<HomeView/>
+  <landing/>
 </main>
+<div>
+  <nav>
+<RouterLink to="/test">testing</RouterLink>
+<RouterLink to="/">landing</RouterLink>
+</nav>
+<RouterView />
+</div>
 
-<nav>
-      <RouterLink to="/">Home</RouterLink>
-  </nav>
+
 
 
 
@@ -17,7 +22,7 @@
 
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HomeView from './views/HomeView.vue'
+import landing from './views/landing.vue'
 
 
 
