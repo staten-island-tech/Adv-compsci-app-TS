@@ -1,9 +1,29 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
+
+
+
+
+
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+<main>
+    <HelloWord/>
+</main>
+
 </template>
+
+
+<script setup lang="ts">
+
+import HelloWord from '../components/HelloWorld.vue'
+
+
+
+
+</script>
+
+
+<style>
+
+
+
+</style>
