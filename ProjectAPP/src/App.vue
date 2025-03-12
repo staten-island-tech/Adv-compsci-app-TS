@@ -3,8 +3,7 @@
 <template>
 
 <main>
-  <landing/>
-</main>
+
 <div>
   <nav>
 <RouterLink to="/test">testing</RouterLink>
@@ -12,6 +11,7 @@
 </nav>
 <RouterView />
 </div>
+</main>
 
 
 
@@ -23,6 +23,8 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import landing from './views/landing.vue'
+
+
 
 
 
