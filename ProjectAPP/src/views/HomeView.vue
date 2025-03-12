@@ -1,6 +1,6 @@
 <template>
     <button @click="fetchCountryInfo">API Call button</button>
-    <button @click="console.log(thingy)">log info</button>
+    <button @click="console.log(thingy)">log info</button>  <!-- this wont return anything until the other button is pressed as that is what actually retunrs the API data into the thingy object(or const whatever it is) -->
     <p v-if="thingy">Name: {{ thingy.capital }}</p>
     <p v-if="thingy">Sex Ratio: {{ thingy.sex_ratio }}</p>
   </template>
