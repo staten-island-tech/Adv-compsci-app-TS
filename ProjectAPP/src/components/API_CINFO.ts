@@ -16,6 +16,7 @@ export async function getCountryInfo(countryName: string) {
       });
   
       const data = await response.json();  // TypeScript will infer the type here.
+      return data.length > 0 ? data[0] : null;
     } catch (error) {
       console.error('Error:', error);
       return null;
