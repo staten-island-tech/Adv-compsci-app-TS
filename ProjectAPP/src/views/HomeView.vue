@@ -4,27 +4,27 @@
 
 
 
+
 <template>
-<main>
-    <HelloWord/>
-    <p>TESTING MAYBE WORK</p>
-</main>
-
-</template>
-
-
-<script setup lang="ts">
-
-import HelloWord from '../components/HelloWorld.vue'
-
-
-
-
-</script>
-
-
-<style>
-
-
-
-</style>
+    <button @click="console.log(thingy)" >API Call button</button>
+    
+    
+    </template>
+        
+        
+    <script setup lang="ts">
+    import {getCountryInfo} from '../components/API_CINFO'
+    const thingy = getCountryInfo('United States')
+    
+        
+        
+        
+        
+    </script>
+        
+        
+    <style>
+        
+        
+        
+    </style>

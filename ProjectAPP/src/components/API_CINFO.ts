@@ -3,7 +3,7 @@
 const API_KEY:string = "Hy28GIGoPd6IMlpaz3PXyA==JV0XQTL4NCnFGRfl"
 
 
-async function getCountryInfo(countryName: string) {
+export async function getCountryInfo(countryName: string) {
     const url = `https://api.api-ninjas.com/v1/country?name=${countryName}`;
     
     try {
@@ -23,5 +23,4 @@ async function getCountryInfo(countryName: string) {
   }
   
   // Usage
-const info = getCountryInfo('United States')
-console.log(info)
+
