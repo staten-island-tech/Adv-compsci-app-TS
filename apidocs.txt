@@ -1,0 +1,6 @@
+https://api-ninjas.com/api/country
+
+https://api-ninjas.com/profile
+
+VUE docs in case i forgot https://vuejs.org/guide/essentials/event-handling
+
