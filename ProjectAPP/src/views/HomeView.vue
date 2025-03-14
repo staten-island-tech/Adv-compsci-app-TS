@@ -5,7 +5,7 @@
       <button type="submit" >Search</button>
     </form>
   
-    <p v-if="thingy">Name: {{ thingy.capital }}</p>
+    <p v-if="thingy">Captial: {{ thingy.capital }}</p>
     <p v-if="thingy">Sex Ratio: {{ thingy.sex_ratio }}</p>
   </template>
   
