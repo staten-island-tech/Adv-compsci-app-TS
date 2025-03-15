@@ -8,3 +8,6 @@ VUE docs in case i forgot https://vuejs.org/guide/essentials/event-handling
 https://api-ninjas.com/api/countryflag
  use the above end point to possibly add in a country guessing game based off a flag
 
+
+
+COMMAND TO USE PReTTIer cOMMAND npx prettier . --write

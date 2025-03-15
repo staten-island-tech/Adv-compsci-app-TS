@@ -1,29 +1,9 @@
-
-
-
-
-
-
 <template>
-    <main>
-        <p>LANDING PAGE</p>
-    </main>
-    
-    </template>
-    
-    
-    <script setup lang="ts">
-    
+  <main>
+    <p>LANDING PAGE</p>
+  </main>
+</template>
 
-    
-    
-    
-    
-    </script>
-    
-    
-    <style>
-    
-    
-    
-    </style>
+<script setup lang="ts"></script>
+
+<style></style>

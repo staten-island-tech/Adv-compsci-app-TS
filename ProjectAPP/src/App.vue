@@ -6,7 +6,7 @@
 
 <div class="MenuBar">
   <nav class="nav">
-    <RouterLink to="/test" class="LinkOne">testing</RouterLink>
+    <RouterLink to="/test" class="LinkOne">Country Information</RouterLink>
     <RouterLink to="/" class="LinkTwo">landing</RouterLink>
   </nav>
 </div>
