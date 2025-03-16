@@ -6,8 +6,10 @@
 
 <div class="MenuBar">
   <nav class="nav">
-    <RouterLink to="/test" class="LinkOne">Country Information</RouterLink>
     <RouterLink to="/" class="LinkTwo">landing</RouterLink>
+    <RouterLink to="/test" class="LinkOne">Country Information</RouterLink>
+    <RouterLink to="/" class="LinkThree">Filter Countries</RouterLink>
+    <RouterLink to="/" class="LinkFour">Guess that country</RouterLink>
   </nav>
 </div>
 
@@ -51,11 +53,16 @@ import landing from './views/landing.vue'
 
 
 }
-.LinkOne, .LinkTwo /* If you need to add more router buttons just link them here so they get autoadjusted into the menu bar */{
+.LinkOne, .LinkTwo , .LinkThree , .LinkFour /* If you need to add more router buttons just link them here so they get autoadjusted into the menu bar */{
   color: rgb(255, 255, 255);  
   text-decoration: none;  
+  text-align: center;
   padding-left: 3vw;
   padding-right: 3vw;
+  background-color: darkgray;
+  border-radius: 15px ;
+  width: auto;
+  
 
 }
 

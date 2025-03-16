@@ -6,24 +6,32 @@
 
   <p v-if="thingy">Country Name: {{ thingy.name }}</p>
   <p v-if="thingy">Captial: {{ thingy.capital }}</p>
-  <p v-if="thingy">
-    Surface Area(Kilometer Squared): {{ Format(thingy.surface_area, formatted_SA) }}
-  </p>
-  <p v-if="thingy">
-    Population of {{ thingy.name }}: {{ Format(thingy.population, formatted_POP) }}
-  </p>
+  <p v-if="thingy">Surface Area(Kilometer Squared): {{ Format(thingy.surface_area, formatted_SA) }}</p>
+  <p v-if="thingy">Population of {{ thingy.name }}: {{ Format(thingy.population, formatted_POP) }} (Million)</p>
+  <p v-if="thingy">{{ thingy.name }} Gross Domestic Product (GDP): {{ Format(thingy.gdp,formatted_GDP) }} (Million)</p>
+  <p v-if="thingy">{{ thingy.name }} Urban population: {{ thingy.urban_population }}%</p>
+
+
+
+
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { getCountryInfo } from '../components/API_CINFO'
 import numbro from 'numbro'
+import Swal from "sweetalert2";
+
 
 const thingy = ref<{
   capital: string
   surface_area: number
   name: string
-  population: number /* Surface area api call is a string not a number */
+  population: number 
+  gdp: number
+  urban_population: number
+  fertility:number 
+
 } | null>(null) // reactive var | just add in more of the data names from the object to hold them in the template
 
 const fetchCountryInfo = async (Name: string) => {
@@ -33,23 +41,55 @@ const fetchCountryInfo = async (Name: string) => {
 const Country = ref<string>('')
 let formatted_SA: number = 0
 let formatted_POP: number = 0
+let formatted_GDP: number = 0
+let formatted_FERT:number = 0
+
 
 function Format(x: number, y: any) {
   y = numbro(x).format({ thousandSeparated: true })
   return y
 }
 
+function Alert_One() {
+  Swal.fire({
+    title: "Error!",
+    text: "Please enter a country before searching.",
+    icon: "warning",
+    background: "black",
+    color: "white",
+    confirmButtonText: "OK",
+  });
+}
+
+function Alert_Two() {
+  Swal.fire({
+    title: "Error!",
+    text: "This search term does not exist | Country is not included ",
+    icon: "warning",
+    background: "black",
+    color: "Gray",
+    confirmButtonText: "OK",
+  });
+}
+
 function Search(x: string) {
   if (x == '') {
     console.log('no input')
     thingy.value = null
-  } else {
+    Alert_One()
+  } 
+  else {
     thingy.value = null // hides the p tags with the v-if"thingy" model so that prevouous country data isnt show after entering a new search
     fetchCountryInfo(x)
     console.log(x)
   }
 }
 </script>
+
+
+
+
+
 
 <style scoped>
 .Search_Action {

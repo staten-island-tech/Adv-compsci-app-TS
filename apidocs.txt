@@ -10,4 +10,7 @@ https://api-ninjas.com/api/countryflag
 
 
 
+https://sweetalert2.github.io/#icons
+better warning pop ups
+
 COMMAND TO USE PReTTIer cOMMAND npx prettier . --write
