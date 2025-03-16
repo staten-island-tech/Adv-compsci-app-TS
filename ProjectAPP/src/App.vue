@@ -7,9 +7,9 @@
 <div class="MenuBar">
   <nav class="nav">
     <RouterLink to="/" class="LinkTwo">landing</RouterLink>
-    <RouterLink to="/test" class="LinkOne">Country Information</RouterLink>
-    <RouterLink to="/" class="LinkThree">Filter Countries</RouterLink>
-    <RouterLink to="/" class="LinkFour">Guess that country</RouterLink>
+    <RouterLink to="/CountryInfo" class="LinkOne">Country Information</RouterLink>
+    <RouterLink to="/FilterCountries" class="LinkThree">Filter Countries</RouterLink>
+    <RouterLink to="/GuessTheCountry" class="LinkFour">Guess that country</RouterLink>
   </nav>
 </div>
 
