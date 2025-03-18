@@ -1,0 +1,30 @@
+
+
+const API_KEY:string = "Hy28GIGoPd6IMlpaz3PXyA==JV0XQTL4NCnFGRfl"
+
+
+export async function paramcountry() {
+    const url = `https://api.api-ninjas.com/v1/country?limit=10`; // & symbol to add more quesrys in the search
+    
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'X-Api-Key': API_KEY,
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      const data = await response.json(); 
+      console.log(data)
+      return data.length > 0 ? data[0] : null;
+    } catch (error) {
+      console.error('Error:', error);
+      return null;
+    }
+  }
+  
+
+
+  // Usage
+

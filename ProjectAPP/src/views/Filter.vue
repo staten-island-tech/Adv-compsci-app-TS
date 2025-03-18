@@ -4,7 +4,9 @@
     </main>
   </template>
   
-  <script setup lang="ts">
+<script setup lang="ts">
+import { paramcountry } from '../components/Param'
+paramcountry()
 
 </script>
   
