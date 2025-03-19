@@ -52,7 +52,7 @@ const filters = [
   { id: 'max_fertility', value: 'max_fertility', label: 'Maximum Fertility Rate | Maximum fertility rate in %.' },
   { id: 'min_urban_pop_rate', value: 'min_urban_pop_rate', label: 'Minimum Urban Population Rate | Minimum urban population rate in %.' },
   { id: 'max_urban_pop_rate', value: 'max_urban_pop_rate', label: 'Maximum Urban Population Rate | Maximum urban population rate in %.' },
-  { id: 'limit', value: 'limit', label: 'Limit | How many results to return. Must be between 1 and 30. Default is 5.' }
+  { id: 'limit', value: 'limit', label: 'Limit | How many results to return. Must be between 1 and 30. Default is 5.' } /* Should hardcode this to max value for filter page */
 ];
 
 </script>
