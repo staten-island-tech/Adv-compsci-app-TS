@@ -4,8 +4,9 @@ const API_KEY:string = "Hy28GIGoPd6IMlpaz3PXyA==JV0XQTL4NCnFGRfl"
 
 
 export async function paramcountry() {
-    const url = `https://api.api-ninjas.com/v1/country?limit=10&max_area=1000`; // & symbol to add more quesrys in the search
+    const url = `https://api.api-ninjas.com/v1/country?limit=30`; // & symbol to add more quesrys in the search
     /* https://api.api-ninjas.com/v1/country?limit=10&max_area=1000 */ // example how to query multple filters 
+  
     try {
       const response = await fetch(url, {
         method: 'GET',

@@ -2,13 +2,17 @@
     <main>
       <p>filter</p>
       <button @click="paramcountry()">API call</button>
+      <button @click="console.log(Wanted_User_filters)">Check what filters</button>
 
-      <form class="filter-form">
+
+      <form class="filter-form" v-if="Filter_Visible" @submit.prevent="Load_Filter_Inputs(Wanted_User_filters) ,Hide_filters()">
         <div>Selected filters: {{ Wanted_User_filters }}</div>
         <div class="filter-group" v-for="filter in filters" :key="filter.id">
           <input type="checkbox" :id="filter.id" :value="filter.value" v-model="Wanted_User_filters" />
           <label :for="filter.id">{{ filter.label }}</label>
+          <!-- Probs should make this into cards or something else that loads better? -->
         </div>
+        <button type="submit" class="search_BTN">Submit requested filters</button>
       </form>
       
 
@@ -32,8 +36,30 @@
   
 <script setup lang="ts">
 import { paramcountry } from '../components/Param'
-import { ref } from 'vue'
-const Wanted_User_filters = ref([])
+import { ref, toRaw } from 'vue'
+
+const Wanted_User_filters:any = ref([])
+const Filter_Visible =  ref<boolean>(true)
+
+function Hide_filters(){
+Filter_Visible.value = false
+}
+
+function Load_Filter_Inputs(x:any){
+  let new_data =toRaw(x) // converts it into a array | doesnt need to be a proxy arry since we dont need it to be reactive since the values are already submiutted I just need to reed em
+  console.log(new_data)
+  for(let x in new_data){
+    console.log(x)
+  }
+
+}
+
+
+
+
+
+
+
 const filters = [
   { id: 'Currency', value: 'Currency', label: 'Currency | 3-letter currency code of country (e.g. USD).' },
   { id: 'min_gdp', value: 'min_gdp', label: 'Minimum GDP | Minimum gross domestic product (GDP) of country, in US Dollars.' },
@@ -52,7 +78,6 @@ const filters = [
   { id: 'max_fertility', value: 'max_fertility', label: 'Maximum Fertility Rate | Maximum fertility rate in %.' },
   { id: 'min_urban_pop_rate', value: 'min_urban_pop_rate', label: 'Minimum Urban Population Rate | Minimum urban population rate in %.' },
   { id: 'max_urban_pop_rate', value: 'max_urban_pop_rate', label: 'Maximum Urban Population Rate | Maximum urban population rate in %.' },
-  { id: 'limit', value: 'limit', label: 'Limit | How many results to return. Must be between 1 and 30. Default is 5.' } /* Should hardcode this to max value for filter page */
 ];
 
 </script>
