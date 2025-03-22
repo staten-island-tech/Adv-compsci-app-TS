@@ -1,11 +1,11 @@
 <template>
-    <main>
+    <main class="main">
       <p>filter</p>
       <button @click="paramcountry()">API call</button>
       <button @click="console.log(Wanted_User_filters)">Check what filters</button>
 
 
-      <form class="filter-form" v-if="Filter_Visible" @submit.prevent="Load_Filter_Inputs(Wanted_User_filters) ,Hide_filters()">
+      <form class="filter-form" v-if="Filter_Visible" @submit.prevent="Hide_filters()"> // Load_Filter_Inputs(Wanted_User_filters) only after this is clear?
         <div>Selected filters: {{ Wanted_User_filters }}</div>
         <div class="filter-group" v-for="filter in filters" :key="filter.id">
           <input type="checkbox" :id="filter.id" :value="filter.value" v-model="Wanted_User_filters" />
@@ -16,10 +16,19 @@
       </form>
       
 
+      <div v-if="Filter_Visible_Second">
+        <p>This will only show if you already sumbited selcted values</p>
+        <p> Submitted values: {{ Submitting_values }}</p>
 
+        <form class="Filter-Submission" @submit.prevent="Load_Filter_Inputs(Submitting_values)" >
 
-<!-- maake it so that after the form is sumbited with the selected filters it clears itself and then presents input fields for the filter you selected to put in
- the values and then sumbit those values to plug intom the param.ts file function-->
+          <input type="text" v-for="filter in Wanted_User_filters" :key="filter" :placeholder="filter" v-model="Submitting_values[filter]" />
+          <button type="submit" class="Submit_Final_Values">Submit</button>
+        </form>
+       
+      
+      </div>
+
 
 
 
@@ -40,16 +49,26 @@ import { ref, toRaw } from 'vue'
 
 const Wanted_User_filters:any = ref([])
 const Filter_Visible =  ref<boolean>(true)
+const Filter_Visible_Second =  ref<boolean>(false)
+const Submitting_values = ref<Record<string, string>>({});
+
 
 function Hide_filters(){
 Filter_Visible.value = false
+Filter_Visible_Second.value =true
+Wanted_User_filters.value.forEach(filter => {
+        Submitting_values.value[filter] = ""; // Default empty value for inputs
+    });
+
 }
 
 function Load_Filter_Inputs(x:any){
   let new_data =toRaw(x) // converts it into a array | doesnt need to be a proxy arry since we dont need it to be reactive since the values are already submiutted I just need to reed em
   console.log(new_data)
-  for(let x in new_data){
-    console.log(x)
+  console.log("test")
+
+  for(let key in new_data){
+    console.log(key , new_data[key])                    
   }
 
 }
@@ -80,6 +99,8 @@ const filters = [
   { id: 'max_urban_pop_rate', value: 'max_urban_pop_rate', label: 'Maximum Urban Population Rate | Maximum urban population rate in %.' },
 ];
 
+
+
 </script>
   
 <style scoped>
@@ -104,6 +125,9 @@ main {
   background-color: #0056b3;
 }
 
+.main{
+  width: 100vw;
+}
 .filter-form {
   display: flex;
   flex-direction: column;
