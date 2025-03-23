@@ -1,11 +1,10 @@
 <template>
     <main class="main">
       <p>filter</p>
-      <button @click="paramcountry()">API call</button>
-      <button @click="console.log(Wanted_User_filters)">Check what filters</button>
 
+      <button @click="console.log(inital_List)">Check out list</button>
 
-      <form class="filter-form" v-if="Filter_Visible" @submit.prevent="Hide_filters()"> // Load_Filter_Inputs(Wanted_User_filters) only after this is clear?
+      <form class="filter-form" v-if="Filter_Visible" @submit.prevent="Hide_filters()"> 
         <div>Selected filters: {{ Wanted_User_filters }}</div>
         <div class="filter-group" v-for="filter in filters" :key="filter.id">
           <input type="checkbox" :id="filter.id" :value="filter.value" v-model="Wanted_User_filters" />
@@ -47,10 +46,13 @@
 import { paramcountry } from '../components/Param'
 import { ref, toRaw } from 'vue'
 
-const Wanted_User_filters:any = ref([])
+const Wanted_User_filters = ref<string[]>([]);
 const Filter_Visible =  ref<boolean>(true)
 const Filter_Visible_Second =  ref<boolean>(false)
 const Submitting_values = ref<Record<string, string>>({});
+const inital_List: string[] = []
+let PARAM_INPUT:string = ""
+
 
 
 function Hide_filters(){
@@ -65,11 +67,18 @@ Wanted_User_filters.value.forEach(filter => {
 function Load_Filter_Inputs(x:any){
   let new_data =toRaw(x) // converts it into a array | doesnt need to be a proxy arry since we dont need it to be reactive since the values are already submiutted I just need to reed em
   console.log(new_data)
-  console.log("test")
-
+  inital_List.length = 0;
   for(let key in new_data){
-    console.log(key , new_data[key])                    
+    console.log(key , new_data[key])     
+    /* the key is the selected filter itself and the newdata[key] is the value of that filter the user inputted */
+    let listpush = String(key+"="+new_data[key])
+    inital_List.push(listpush)
   }
+  console.log(inital_List)
+  PARAM_INPUT = inital_List.join("&");
+  console.log(PARAM_INPUT)
+  console.log(paramcountry(PARAM_INPUT))
+    
 
 }
 
@@ -80,11 +89,11 @@ function Load_Filter_Inputs(x:any){
 
 
 const filters = [
-  { id: 'Currency', value: 'Currency', label: 'Currency | 3-letter currency code of country (e.g. USD).' },
-  { id: 'min_gdp', value: 'min_gdp', label: 'Minimum GDP | Minimum gross domestic product (GDP) of country, in US Dollars.' },
-  { id: 'max_gdp', value: 'max_gdp', label: 'Maximum GDP | Maximum gross domestic product (GDP) of country, in US Dollars.' },
-  { id: 'min_population', value: 'min_population', label: 'Minimum Population | Minimum population of country.' },
-  { id: 'max_population', value: 'max_population', label: 'Maximum Population | Maximum population of country.' },
+  { id: 'currency', value: 'currency', label: 'Currency | 3-letter currency code of country (e.g. USD).' },
+  { id: 'min_gdp', value: 'min_gdp', label: 'Minimum GDP | Minimum gross domestic product (GDP) of country, in US Dollars. (In Millions)' },
+  { id: 'max_gdp', value: 'max_gdp', label: 'Maximum GDP | Maximum gross domestic product (GDP) of country, in US Dollars. (In Millions)' },
+  { id: 'min_population', value: 'min_population', label: 'Minimum Population | Minimum population of country. (In Millions)' },
+  { id: 'max_population', value: 'max_population', label: 'Maximum Population | Maximum population of country. (In Millions)' },
   { id: 'min_area', value: 'min_area', label: 'Minimum Area | Minimum surface area of country in km².' },
   { id: 'max_area', value: 'max_area', label: 'Maximum Area | Maximum surface area of country in km².' },
   { id: 'min_unemployment', value: 'min_unemployment', label: 'Minimum Unemployment Rate | Minimum unemployment rate in %.' },
