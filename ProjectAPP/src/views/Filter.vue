@@ -52,7 +52,7 @@ const Filter_Visible_Second =  ref<boolean>(false)
 const Submitting_values = ref<Record<string, string>>({});
 const inital_List: string[] = []
 let PARAM_INPUT:string = ""
-
+let Output:any = null
 
 
 function Hide_filters(){
@@ -64,7 +64,9 @@ Wanted_User_filters.value.forEach(filter => {
 
 }
 
-function Load_Filter_Inputs(x:any){
+
+
+async function Load_Filter_Inputs(x:any){
   let new_data =toRaw(x) // converts it into a array | doesnt need to be a proxy arry since we dont need it to be reactive since the values are already submiutted I just need to reed em
   console.log(new_data)
   inital_List.length = 0;
@@ -77,7 +79,9 @@ function Load_Filter_Inputs(x:any){
   console.log(inital_List)
   PARAM_INPUT = inital_List.join("&");
   console.log(PARAM_INPUT)
-  console.log(paramcountry(PARAM_INPUT))
+
+  Output = await paramcountry(PARAM_INPUT)/* cant get it to assgin the data outside of the async function???? FIgure this out Immediatly :0 */
+  console.log(Output) // not outputing all the data for some reason
     
 
 }
