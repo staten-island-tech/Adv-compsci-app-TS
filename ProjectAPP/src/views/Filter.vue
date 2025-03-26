@@ -2,7 +2,7 @@
     <main class="main">
       <p>filter</p>
 
-      <button @click="console.log(inital_List)">Check out list</button>
+      <button @click="console.log(inital_List)">Check out list</button> <!-- delte this button -->
 
       <form class="filter-form" v-if="Filter_Visible" @submit.prevent="Hide_filters()"> 
         <div>Selected filters: {{ Wanted_User_filters }}</div>
