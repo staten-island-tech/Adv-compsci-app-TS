@@ -43,7 +43,7 @@
   </template>
   
 <script setup lang="ts">
-import { paramcountry } from '../components/Param'
+import { paramcountry,outputvalues } from '../components/Param'
 import { ref, toRaw } from 'vue'
 
 const Wanted_User_filters = ref<string[]>([]);
@@ -80,8 +80,8 @@ async function Load_Filter_Inputs(x:any){
   PARAM_INPUT = inital_List.join("&");
   console.log(PARAM_INPUT)
 
-  Output = await paramcountry(PARAM_INPUT)/* cant get it to assgin the data outside of the async function???? FIgure this out Immediatly :0 */
-  console.log(Output) // not outputing all the data for some reason
+  await paramcountry(PARAM_INPUT)
+  console.log(outputvalues) /* Finally got it working just made it update a var from the param file itself and the import it over and it updates once they function runs making sure it awaits before updating and doing stuff */
     
 
 }
