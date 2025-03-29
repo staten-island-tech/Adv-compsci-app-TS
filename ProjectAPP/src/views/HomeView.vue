@@ -1,5 +1,5 @@
 <template>
-   <div class="container">
+  <div class="container">
     <form class="search-box" @submit.prevent="(Search(Country), (Country = ''), Format)">
       <input type="text" placeholder="Enter a country" v-model="Country" class="search-input" />
       <button type="submit" class="search-button">🔍 Search</button>
@@ -10,10 +10,18 @@
         <h2 class="country-name">{{ thingy.name }}</h2>
       </div>
       <div class="result-box"><strong>Capital:</strong> {{ thingy.capital }}</div>
-      <div class="result-box"><strong>Surface Area:</strong> {{ Format(thingy.surface_area, formatted_SA) }} km²</div>
-      <div class="result-box"><strong>Population:</strong> {{ Format(thingy.population, formatted_POP) }} million</div>
-      <div class="result-box"><strong>GDP:</strong> {{ Format(thingy.gdp, formatted_GDP) }} million</div>
-      <div class="result-box"><strong>Urban Population:</strong> {{ thingy.urban_population }}%</div>
+      <div class="result-box">
+        <strong>Surface Area:</strong> {{ Format(thingy.surface_area, formatted_SA) }} km²
+      </div>
+      <div class="result-box">
+        <strong>Population:</strong> {{ Format(thingy.population, formatted_POP) }} million
+      </div>
+      <div class="result-box">
+        <strong>GDP:</strong> {{ Format(thingy.gdp, formatted_GDP) }} million
+      </div>
+      <div class="result-box">
+        <strong>Urban Population:</strong> {{ thingy.urban_population }}%
+      </div>
     </div>
   </div>
 </template>
@@ -22,16 +30,16 @@
 import { ref } from 'vue'
 import { getCountryInfo } from '../components/API_CINFO'
 import numbro from 'numbro'
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2'
 
 const thingy = ref<{
   capital: string
   surface_area: number
   name: string
-  population: number 
+  population: number
   gdp: number
   urban_population: number
-  fertility:number 
+  fertility: number
 } | null>(null)
 
 const fetchCountryInfo = async (Name: string) => {
@@ -42,7 +50,7 @@ const Country = ref<string>('')
 let formatted_SA: number = 0
 let formatted_POP: number = 0
 let formatted_GDP: number = 0
-let formatted_FERT:number = 0
+let formatted_FERT: number = 0
 
 function Format(x: number, y: any) {
   y = numbro(x).format({ thousandSeparated: true })
@@ -51,24 +59,24 @@ function Format(x: number, y: any) {
 
 function Alert_One() {
   Swal.fire({
-    title: "Error!",
-    text: "Please enter a country before searching.",
-    icon: "warning",
-    background: "black",
-    color: "white",
-    confirmButtonText: "OK",
-  });
+    title: 'Error!',
+    text: 'Please enter a country before searching.',
+    icon: 'warning',
+    background: 'black',
+    color: 'white',
+    confirmButtonText: 'OK',
+  })
 }
 
 function Alert_Two() {
   Swal.fire({
-    title: "Error!",
-    text: "This search term does not exist | Country is not included ",
-    icon: "warning",
-    background: "black",
-    color: "Gray",
-    confirmButtonText: "OK",
-  });
+    title: 'Error!',
+    text: 'This search term does not exist | Country is not included ',
+    icon: 'warning',
+    background: 'black',
+    color: 'Gray',
+    confirmButtonText: 'OK',
+  })
 }
 
 function Search(x: string) {
@@ -76,9 +84,8 @@ function Search(x: string) {
     console.log('no input')
     thingy.value = null
     Alert_One()
-  } 
-  else {
-    thingy.value = null 
+  } else {
+    thingy.value = null
     fetchCountryInfo(x)
     console.log(x)
   }

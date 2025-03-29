@@ -18,7 +18,6 @@ export async function paramcountry(input:string) {
   
       const data = await response.json(); 
       outputvalues = data
-      console.log(data)
       return data.length > 0 ? data[0] : null;
 
     } catch (error) {
