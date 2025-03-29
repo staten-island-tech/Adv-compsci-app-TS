@@ -4,6 +4,8 @@
 
     <form class="filter-form" v-if="Filter_Visible" @submit.prevent="Hide_filters()">
       <div class="filter-group" v-for="filter in filters" :key="filter.id">
+        <input
+          type="checkbox"
           :id="filter.id"
           :value="filter.value"
           v-model="Wanted_User_filters"
