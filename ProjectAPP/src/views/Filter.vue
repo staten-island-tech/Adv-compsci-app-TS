@@ -34,6 +34,7 @@
           <p>Captail:{{ Countries.capital }}</p>
           <p>Surface area of the country:{{ Countries.surface_area }} km²</p>
           <p>Local currency:{{ Countries.currency?.name }}</p>
+          <p>Local GDP: {{ Countries.gdp }} million (USD)</p>
           <p>Captail:{{ Countries.capital }}</p>
           <p>Threatened species in {{ Countries.name }}: {{ Countries.threatened_species }}</p>
           <p>Average lifespan of a male: {{ Countries.life_expectancy_male }} years</p>
